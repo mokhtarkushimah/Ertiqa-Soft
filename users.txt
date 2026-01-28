@@ -1,0 +1,26 @@
+[
+  {
+    "username": "admin",
+    "password": "Adm!n1234",
+    "usertype": "admin",
+    "phonenumber": "771234567",
+    "gender": "male",
+    "isactive": true
+  },
+  {
+    "username": "mohammed",
+    "password": "m123456*o",
+    "usertype": "customer",
+    "phonenumber": "775459135",
+    "gender": "m",
+    "isactive": true
+  },
+  {
+    "username": "ali",
+    "password": "a123456*o",
+    "usertype": "employee",
+    "phonenumber": "776861030",
+    "gender": "m",
+    "isactive": true
+  }
+]

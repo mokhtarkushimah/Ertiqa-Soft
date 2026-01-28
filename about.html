@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>مشروع واجهة - قالب البداية</title>
+
+  <!-- 11. Bootstrap CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- 4. Font Awesome (CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous">
+
+  <style>
+    /* ======= عام: ألوان وخطوط وتهيئة ======= */
+    :root{
+      --primary:#0d6efd;
+      --muted:#6c757d;
+      --bg:#f8f9fa;
+      --card-bg:#ffffff;
+      --gap:1rem;
+    }
+    body{
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      margin:0;
+      color:#222;
+      direction:rtl; /* لأن المحتوى عربي */
+    }
+    a { text-decoration:none; }
+
+    /* ======= 2. Layout: header / nav / main / aside / footer ======= */
+    header{
+      background:linear-gradient(90deg,var(--primary), #0056b3);
+      color:white;
+      padding:1rem;
+    }
+    .site-title { font-size:1.4rem; font-weight:700; display:flex; gap:.6rem; align-items:center; }
+
+    nav.navbar {
+      background:transparent;
+      padding:0.5rem 0;
+    }
+
+    main.container {
+      margin-top:1rem;
+      margin-bottom:2rem;
+    }
+
+    .layout {
+      display:grid; /* استخدم Grid للهيكل العام (7: Flexbox/Grid) */
+      grid-template-columns: 1fr 320px;
+      gap:var(--gap);
+      align-items:start;
+    }
+
+    .card {
+      background:var(--card-bg);
+      border-radius:12px;
+      padding:1rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    footer {
+      background:#222;
+      color:#eee;
+      padding:1rem;
+      text-align:center;
+      margin-top:1.5rem;
+    }
+
+    /* ======= 7. مثال Flexbox داخل بطاقة ======= */
+    .features {
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+    .feature{
+      flex:1 1 150px;
+      min-width:150px;
+      background:#fafafa;
+      padding:.8rem;
+      border-radius:8px;
+      display:flex;
+      gap:.6rem;
+      align-items:center;
+    }
+
+    /* ======= 8. Responsive: Media Queries ======= */
+    @media (max-width:900px){
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    /* ======= 9. Toast Notification (بسيط، قابل التوسيع) ======= */
+    #toast {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1055;
+      min-width: 260px;
+      display:none;
+      border-radius:8px;
+      padding:.8rem 1rem;
+      box-shadow:0 6px 20px rgba(0,0,0,0.1);
+      background:#fff;
+    }
+    #toast.show { display:block; animation: slideIn .35s ease; }
+    @keyframes slideIn { from {transform:translateY(10px);opacity:0} to {transform:none;opacity:1} }
+
+    /* ======= تحسين بسيط للنموذج ======= */
+    form .form-error { color: #c82333; font-size:0.9rem; margin-top:.25rem; display:none; }
+
+    /* ======= 6. مكان السلايدر ======= */
+    .slider-placeholder{
+      height:260px;
+      border-radius:8px;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(90deg,#eef2ff,#f8fafc);
+      color:var(--muted);
+      font-weight:600;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ======= Header + Nav (2) ======= -->
+  <header class="px-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="site-title">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Ertiqa Soft - مشروع الواجهة</span>
+      </div>
+
+      <div>
+        <button id="openContact" class="btn btn-light btn-sm">
+          <i class="fa-solid fa-envelope"></i> تواصل
+        </button>
+      </div>
+    </div>
+
+    <nav class="navbar">
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link text-white" href="#home">الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#features">المزايا</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#contact">اتصل</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ======= Main Content (2,7,8) ======= -->
+  <main class="container">
+    <div class="layout">
+
+      <!-- المحتوى الرئيسي: section (2) -->
+      <section class="card" id="home">
+        <!-- 6. Slider placeholder (هنا تضع WowSlider أو أي سلايدر آخر) -->
+        <div class="slider-placeholder mb-3">
+          سلايدر — استبدل هذا بالمكون الفعلي (مثل WowSlider)
+        </div>
+
+        <!-- 1. مثال على صورة وفيديو -->
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <img src="https://via.placeholder.com/800x400?text=صورة+مثال" alt="مثال" class="img-fluid rounded">
+          </div>
+          <div class="col-md-6">
+            <video controls class="w-100 rounded">
+              <source src="" type="video/mp4">
+              لا يوجد فيديو مرفوع.
+            </video>
+          </div>
+        </div>
+
+        <!-- 3. عناصر HTML أساسية -->
+        <h3 id="features">مزايا المشروع</h3>
+        <div class="features mb-3">
+          <div class="feature"><i class="fa-solid fa-bolt fa-lg"></i><div><b>سريع</b><div class="text-muted small">تحميل سريع وتجربة سلسة</div></div></div>
+          <div class="feature"><i class="fa-solid fa-mobile-screen-button fa-lg"></i><div><b>متجاوب</b><div class="text-muted small">تعمل على جميع الشاشات</div></div></div>
+          <div class="feature"><i class="fa-solid fa-lock fa-lg"></i><div><b>آمن</b><div class="text-muted small">تحقق إدخالات و حماية</div></div></div>
+        </div>
+
+        <!-- 5. نموذج مع Validation -->
+        <h4>نموذج تسجيل / تواصل</h4>
+        <form id="contactForm" novalidate>
+          <div class="mb-2">
+            <label class="form-label">الاسم</label>
+            <input type="text" name="name" class="form-control" required minlength="3" placeholder="أدخل اسمك">
+            <div class="form-error">الاسم مطلوب ويجب أن يكون 3 أحرف على الأقل.</div>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">البريد الإلكتروني</label>
+            <input type="email" name="email" class="form-control" required placeholder="email@example.com">
+            <div class="form-error">أدخل بريد إلكتروني صحيح.</div>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">الرسالة</label>
+            <textarea name="message" class="form-control" rows="4" required></textarea>
+            <div class="form-error">الرسالة لا يمكن أن تكون فارغة.</div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i> إرسال</button>
+            <button id="showToastBtn" class="btn btn-outline-secondary" type="button"><i class="fa-regular fa-bell"></i> اختبار إشعار</button>
+          </div>
+        </form>
+
+      </section>
+
+      <!-- aside (2) -->
+      <aside class="card">
+        <h5>الأدوات السريعة</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><button class="btn btn-sm btn-outline-primary w-100" id="openModalBtn"><i class="fa-solid fa-user-plus"></i> فتح مودال</button></li>
+          <li class="mb-2"><button class="btn btn-sm btn-outline-success w-100" id="validateBtn">تحقق يدوي من النموذج</button></li>
+          <li class="mb-2"><button class="btn btn-sm btn-outline-dark w-100" id="downloadDemo">تحميل ملف تجريبي</button></li>
+        </ul>
+
+        <hr>
+        <h6>ملاحظات تقنية</h6>
+        <p class="small text-muted">
+          • استخدم WowSlider بوضع ملف الـ HTML/JS الخاص به مكان <!-- slider-placeholder -->. <br>
+          • يمكن تعديل ألوان المتغيرات في :root.
+        </p>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- footer (2) -->
+  <footer>
+    <div>© Ertiqa Soft — مشروع الواجهة • مصنوع للأغراض التعليمية</div>
+  </footer>
+
+  <!-- ======= 9. Toast container ======= -->
+  <div id="toast" class="card">
+    <div class="d-flex justify-content-between align-items-start">
+      <div>
+        <strong id="toastTitle">نجاح</strong>
+        <div id="toastMessage" class="small text-muted">تمت العملية بنجاح.</div>
+      </div>
+      <div><button id="toastClose" class="btn btn-sm btn-link">×</button></div>
+    </div>
+  </div>
+
+  <!-- ======= 10. Modal (Bootstrap modal) ======= -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">تسجيل سريع</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="اغلاق"></button>
+        </div>
+        <div class="modal-body">
+          <form id="quickRegister" novalidate>
+            <div class="mb-2">
+              <label class="form-label">اسم المستخدم</label>
+              <input name="user" class="form-control" required>
+              <div class="form-error">اسم المستخدم مطلوب.</div>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">كلمة المرور</label>
+              <input name="pass" type="password" class="form-control" required minlength="6">
+              <div class="form-error">يجب أن تكون كلمة المرور 6 حروف على الأقل.</div>
+            </div>
+            <button class="btn btn-primary" type="submit">تسجيل</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= 12. jQuery و Bootstrap JS (CDN) ======= -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ========== مساعدات/تعليقات: كل كتلة JS مرتبطة بمتطلبات المشروع ==========
+    // ملاحظة: لا تقم بالنسخ الحرفي للـ integrity هنا في المشروع الحقيقي بدون القيم الصحيحة.
+
+    // ======= 5. التحقق من النموذج (HTML5 + JS) =======
+    function showFieldError($input, show) {
+      const $err = $input.closest('div').querySelector('.form-error');
+      if ($err) $err.style.display = show ? 'block' : 'none';
+    }
+
+    // validateElement: يعيد true لو صالح
+    function validateElement(el) {
+      // HTML5 validity API
+      if (!el.checkValidity()) {
+        showFieldError(el, true);
+        return false;
+      } else {
+        showFieldError(el, false);
+        return true;
+      }
+    }
+
+    // عند إرسال نموذج التواصل (يستخدم AJAX محاكاة)
+    $('#contactForm').on('submit', function(e){
+      e.preventDefault();
+      const form = this;
+      let valid = true;
+      $(form).find('input,textarea').each(function(){
+        if (!this.checkValidity()) {
+          $(this).siblings('.form-error').show();
+          valid = false;
+        } else {
+          $(this).siblings('.form-error').hide();
+        }
+      });
+      if (!valid) {
+        showToast('خطأ', 'الرجاء تصحيح الحقول المشار إليها.');
+        return;
+      }
+
+      // ======= 10. إرسال عبر AJAX (محاكاة) =======
+      const data = $(form).serialize();
+      // هنا نستخدم محاكاة: تنتظر ثانيتين ثم تعطي رد
+      showToast('جاري الإرسال', 'برجاء الانتظار...');
+      setTimeout(() => {
+        // استجابة ناجحة - في مشروع حقيقي: استبدل بمطلب $.post('/api/contact', data)...
+        showToast('تم الإرسال', 'شكراً، تم استلام رسالتك.');
+        form.reset();
+      }, 1200);
+    });
+
+    // ======= فتح المودال (Bootstrap modal) =======
+    const modalEl = document.getElementById('exampleModal');
+    const bsModal = new bootstrap.Modal(modalEl);
+    $('#openModalBtn').on('click', () => bsModal.show());
+
+    // ======= الـ Modal: إرسال عبر AJAX (محاكاة) =======
+    $('#quickRegister').on('submit', function(e){
+      e.preventDefault();
+      const form = this;
+      let ok = true;
+      $(form).find('input').each(function(){
+        if (!this.checkValidity()) { $(this).siblings('.form-error').show(); ok = false; } else $(this).siblings('.form-error').hide();
+      });
+      if (!ok) return;
+      // محاكاة إرسال
+      showToast('جارٍ التسجيل', 'نرجو الانتظار...');
+      setTimeout(() => {
+        showToast('نجاح', 'تم التسجيل بنجاح.');
+        bsModal.hide();
+        form.reset();
+      }, 1000);
+    });
+
+    // ======= 9. Toast helper (عرض/إخفاء) =======
+    function showToast(title, message, timeout = 3000) {
+      $('#toastTitle').text(title);
+      $('#toastMessage').text(message);
+      const el = $('#toast');
+      el.addClass('show');
+      // إغلاق تلقائي
+      setTimeout(()=> el.removeClass('show'), timeout);
+    }
+    $('#toastClose').on('click', () => $('#toast').removeClass('show'));
+    $('#showToastBtn').on('click', () => showToast('اختبار', 'هذا إشعار تجريبي.', 2500));
+
+    // تلقائياً: عرض إشعار ترحيبي عند تحميل الصفحة (يمكن إيقافه)
+    $(document).ready(function(){
+      setTimeout(()=> showToast('مرحبا بك', 'تم تحميل الواجهة التجريبية.' , 2500), 600);
+    });
+
+    // ======= 8. زر تحقق يدوي وأمثلة (Responsive helpers) =======
+    $('#validateBtn').on('click', function(){
+      // تحقق كل المدخلات في النموذج الرئيسي
+      $('#contactForm').find('input,textarea').each(function(){
+        validateElement(this);
+      });
+      showToast('تم', 'تم التحقق من الحقول.');
+    });
+
+    // ======= 6. WowSlider - ملاحظة إدماج =======
+    // ملاحظة: WowSlider ليس مشروعاً مضمن هنا. لإضافة WowSlider:
+    // 1) أنشئ ملفات السلايدر (css, js, images) وفق وثائق WowSlider.
+    // 2) استبدل محتوى .slider-placeholder بالـ HTML الخاص بالسلايدر (div#wowslider...)
+    // 3) أدرج روابط الـ CSS و JS الخاصة بالسلايدر قبل نهاية </body>.
+    // مثال (مبسّط):
+    //   <link rel="stylesheet" href="wowslider/style.css">
+    //   <script src="wowslider/wowslider.js"></script>
+    // ثم استدعي دالة init الخاصة بهم إن وُجدت.
+
+    // ======= Download demo (مثال بسيط لملف) =======
+    $('#downloadDemo').on('click', function(){
+      // أنشئ ملف نصي مؤقت وحمله
+      const blob = new Blob(["ملف تجريبي لمشروع واجهة Ertiqa Soft"], {type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'demo.txt';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // ======= زر تواصل (يفتح نموذج المودال) =======
+    $('#openContact').on('click', () => bsModal.show());
+
+  </script>
+</body>
+</html>

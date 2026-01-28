@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login | Signup To Ertiqa Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="icon" href="images/logo.png">
+<style>
+  *{
+    box-sizing:border-box}
+  :root{
+    --bg:#0d0d0f;
+    --panel:#000000;
+    --muted:#9aa0a6;
+    --white:#fdf9f9;
+    --orange-1:#fc8600;
+    --orange-2:#ffaa00;
+    --radius:22px;
+  }
+  body{
+    margin:0;
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    background:var(--bg);
+    color:var(--white);
+    font-family:Poppins,system-ui,-apple-syst
+    em,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  }
+
+  .card{
+    width:930px;
+    height:540px;
+    position:relative;
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:#0e0e10;
+    box-shadow:
+      0 0 0 1px rgba(255,130,40,.28) inset,
+      0 0 0 2px rgba(255,130,40,.12) inset,
+      0 0 38px rgba(255,110,20,.45);
+  }
+
+  .visual{
+    position:absolute;
+    inset:18px 48% 18px 18px; 
+    border-radius:18px;
+    background:
+      radial-gradient(1200px 400px at -10% 110%, rgba(255,255,255,.12), transparent 55%),
+      linear-gradient(135deg,#7b3d0a 0%,#fb8b2d 35%,#fb8b2d 52%,#fb8b2d 67%,#fb8b2d 100%);
+    -webkit-clip-path:polygon(0 0, 90% 0, 60% 100%, 0% 100%);
+            clip-path:polygon(0 0, 90% 0, 60% 100%, 0% 100%);
+    box-shadow:inset 0 0 0 1px rgba(255,186,120,.1);
+  }
+  .visual::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(500px 220px at 70% 20%, rgba(255,255,255,.08), transparent 60%);
+    pointer-events:none;
+  }
+
+  .welcome{
+    position:absolute;
+    left:42px; 
+    top:72px;
+    width:360px;
+    text-shadow:0 2px 8px rgba(0,0,0,.6);
+  }
+  .welcome h2{
+    font-size:38px; 
+    letter-spacing:.6px; 
+    font-weight:800;
+    margin:0 0 12px;
+  }
+  .welcome p{
+    font-size:14px; 
+    line-height:1.65; 
+    max-width:310px; 
+    opacity:.95
+  }
+  
+  .panel{
+    position:absolute;
+    inset:18px 18px 18px 50%;
+    background:linear-gradient(180deg, rgba(16,16,18,.96), rgba(16,16,18,.92));
+    border-radius:18px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+    overflow:hidden;
+  }
+
+  .forms{
+    position:absolute;
+    inset:60px 46px 46px;
+  }
+  form{
+    position:absolute;
+    inset:0;
+    display:flex; 
+    flex-direction:column;
+    gap:16px;
+  }
+  .title{
+    font-size:30px;
+    font-weight:700;
+    margin-bottom:6px;
+  }
+
+  .label{
+    font-size:12px;
+    color:var(--muted);
+    margin:2px 0 6px 2px;
+  }
+  .control{
+    position:relative;
+  }
+  .control input{
+    width:100%;
+    height:44px;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    padding:0 52px 0 12px;
+    color:#eef0f3;
+    background:#1c1c22;
+    box-shadow:
+      inset 0 -2px 0 rgba(255,255,255,.03),
+      inset 0 0 0 1px rgba(255,255,255,.06);
+  }
+  .icon{
+    position:absolute;
+    right:6px;
+    top:50%;
+    transform:translateY(-50%);
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    display:grid;
+    place-items:center;
+    background:#0f0f12;
+    color:#c9c9ce;
+    box-shadow:0 0 0 1px rgba(255,255,255,.06) inset;
+  }
+
+  .btn{
+    height:44px;
+    border:none;
+    border-radius:999px;
+    color:#fff;
+    font-weight:600; 
+    letter-spacing:.3px;
+    cursor:pointer;
+    background:
+      radial-gradient(80% 180% at 50% 10%, rgba(255,255,255,.18), transparent 40%),
+      linear-gradient(180deg, var(--orange-1), var(--orange-2));
+    box-shadow:
+      0 8px 18px rgba(255,94,0,.28),
+      inset 0 0 0 1px rgba(255,255,255,.12);
+  }
+  .alt{
+
+    font-size:13px;
+    text-align:center;
+    margin-top:2px;
+    color:#d5d7db;
+  }
+  .alt a{
+    color:var(--orange-1);
+    text-decoration:none; 
+    border-bottom:1px solid rgba(172, 122, 65, 0.45)
+  }
+
+  .form-register{ 
+    transform:translateX(120%);
+    transition:.7s ease;
+    opacity:0; filter:blur(10px);
+  }
+  .form-login{
+    transform:translateX(0);
+    transition:.7s ease;
+    opacity:1; filter:blur(0);
+  }
+  .card.active .form-register{
+    transform:translateX(0);
+    opacity:1; filter:blur(0);
+  }
+  .card.active .form-login{
+    transform:translateX(-120%);
+    opacity:0; filter:blur(10px);
+  }
+  .animate > *{ transition:inherit }
+  .card.active .form-register.animate > *{
+    transition-delay:calc(.1s * var(--i));
+  } 
+  .form-login.animate > *{
+    transition-delay:calc(.06s * var(--i));
+  }
+
+  /* Toast  */
+  #toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    bottom: 30px;
+    font-size: 15px;
+    opacity: 0;
+    transition: opacity 0.5s, left 0.5s;
+  }
+  #toast.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <div class="visual"></div>
+    <div class="welcome">
+      <h2>WELCOME!</h2>
+      <p>We’re delighted to have you here. If you need any assistance,
+         feel free to reach out.</p>
+    </div>
+
+    <section class="panel">
+      <div class="forms">
+
+        <!-- Login -->
+        <form class="form-login animate" autocomplete="off">
+          <div class="title">Login</div>
+          <div class="field" style="--i:1">
+            <div class="label">Username</div>
+            <div class="control">
+              <input type="text" placeholder="Enter your username" required>
+              <div class="icon"><i class="fa-regular fa-user"></i></div>
+            </div>
+          </div>
+          <div class="field" style="--i:2">
+            <div class="label">Password</div>
+            <div class="control">
+              <input type="password" placeholder="Enter your password" required>
+              <div class="icon"><i class="fa-solid fa-lock"></i></div>
+            </div>
+          </div>
+          <button type="submit" class="btn" style="--i:3">Login</button>
+          <div class="alt" style="--i:4">
+            Don’t have an account? <a href="#" id="toRegister">Signup</a>
+          </div>
+        </form>
+
+        <!-- Register -->
+        <form class="form-register animate" autocomplete="off">
+          <div class="title">Register</div>
+          <div class="field" style="--i:1">
+            <div class="label">Username</div>
+            <div class="control">
+              <input type="text" placeholder="Create a username" required>
+              <div class="icon"><i class="fa-regular fa-user"></i></div>
+            </div>
+          </div>
+          <div class="field" style="--i:2">
+            <div class="label">Email</div>
+            <div class="control">
+              <input type="email" placeholder="Enter your email" required>
+              <div class="icon"><i class="fa-regular fa-envelope"></i></div>
+            </div>
+          </div>
+          <div class="field" style="--i:3">
+            <div class="label">Password</div>
+            <div class="control">
+              <input type="password" placeholder="Create a password" required>
+              <div class="icon"><i class="fa-solid fa-lock"></i></div>
+            </div>
+          </div>
+          <button type="submit" class="btn" style="--i:4">Register</button>
+          <div class="alt" style="--i:5">
+            Already have an account? <a href="#" id="toLogin">Login</a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+<script>
+  const card = document.getElementById("card");
+
+  // التبديل بين Login و Register
+  document.getElementById("toRegister").addEventListener("click", e => {
+    e.preventDefault();
+    card.classList.add("active");
+  });
+
+  document.getElementById("toLogin").addEventListener("click", e => {
+    e.preventDefault();
+    card.classList.remove("active");
+  });
+
+  // ✅ إذا الرابط فيه ?signup يفتح Register مباشرة
+  window.addEventListener("load", () => {
+    if (window.location.search.includes("signup")) {
+      card.classList.add("active");
+    }
+  });
+
+  // Toast Function
+  function showToast(message, success = true) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.style.background = success ? "#28a745" : "#e74c3c"; 
+    toast.className = "show";
+    setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+  }
+
+  // Register
+  const registerForm = document.querySelector(".form-register");
+  registerForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    const username = registerForm.querySelector("input[type=text]").value.trim();
+    const email = registerForm.querySelector("input[type=email]").value.trim();
+    const password = registerForm.querySelector("input[type=password]").value.trim();
+
+    if(username === "" || email === "" || password === ""){
+      showToast("جميع الحقول مطلوبة ❌", false);
+    } else if(!/^[^ ]+@[^ ]+\.[a-z]{2,3}$/.test(email)){
+      showToast("صيغة الإيميل غير صحيحة ❌", false);
+    } else if(password.length < 6){
+      showToast("كلمة المرور على الأقل 6 أحرف ❌", false);
+    } else {
+      localStorage.setItem("user", JSON.stringify({username, email, password}));
+      showToast("تم التسجيل بنجاح ✅");
+    }
+  });
+
+  // Login
+  const loginForm = document.querySelector(".form-login");
+  loginForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    const username = loginForm.querySelector("input[type=text]").value.trim();
+    const password = loginForm.querySelector("input[type=password]").value.trim();
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(!user){
+      showToast("لا يوجد حساب مسجل ❌", false);
+    } else if(user.username === username && user.password === password){
+      showToast("تم تسجيل الدخول ✅");
+      setTimeout(()=> window.location.href = "index.html", 3000);
+    } else {
+      showToast("اسم المستخدم أو كلمة المرور غير صحيحة ❌", false);
+    }
+  });
+</script>
+
+</body>
+</html>
+
+
